@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import Footer from "@/components/Footer";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -79,6 +80,12 @@ export default async function CategoryPage({ params }: PageProps) {
           </Link>
           <nav className="flex items-center gap-3">
             <Link
+              href="/about"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
+            >
+              About
+            </Link>
+            <Link
               href="/login"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
             >
@@ -154,6 +161,8 @@ export default async function CategoryPage({ params }: PageProps) {
           </>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import CategoryGrid from "@/components/CategoryGrid";
+import Footer from "@/components/Footer";
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -32,6 +33,7 @@ export default async function HomePage() {
     : 0;
 
   return (
+    <>
     <div className="min-h-screen bg-gray-50">
       {/* Top nav */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-10 shadow-sm">
@@ -40,6 +42,12 @@ export default async function HomePage() {
             Artisan <span className="text-orange-500">Connect</span>
           </Link>
           <nav className="flex items-center gap-3">
+            <Link
+              href="/about"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
+            >
+              About
+            </Link>
             <Link
               href="/login"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
@@ -104,7 +112,7 @@ export default async function HomePage() {
         <CategoryGrid categories={categoriesWithCount} />
       </section>
 
-      {/* CTA footer strip */}
+      {/* CTA strip above footer */}
       <section className="bg-white border-t border-gray-100 py-12 px-6 mt-4">
         <div className="max-w-xl mx-auto text-center">
           <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -114,15 +122,27 @@ export default async function HomePage() {
             Join Artisan Connect to get discovered by clients looking for your
             trade.
           </p>
-          <Link
-            href="/signup"
-            className="inline-block px-8 py-3 bg-orange-500 text-white font-semibold rounded-xl
-                       hover:bg-orange-600 transition-colors shadow-md"
-          >
-            Create a provider account
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/signup"
+              className="inline-block px-8 py-3 bg-orange-500 text-white font-semibold rounded-xl
+                         hover:bg-orange-600 transition-colors shadow-md"
+            >
+              Create a provider account
+            </Link>
+            <Link
+              href="/about"
+              className="inline-block px-8 py-3 bg-white text-orange-500 font-semibold rounded-xl
+                         border-2 border-orange-200 hover:border-orange-400 transition-colors"
+            >
+              Learn more
+            </Link>
+          </div>
         </div>
       </section>
     </div>
+
+    <Footer />
+    </>
   );
 }
